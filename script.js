@@ -10,9 +10,10 @@ let getComputerChoice = () => {
   return compChoice;
 };
 
-let playGame = (playerChoice) => {
-  let computerChoice = getComputerChoice();
+let playRound = (playerChoice, computerChoice) => {
   let result;
+  // Previous Logic
+  /*
   if (computerChoice === "rock") {
     if (playerChoice.toLowerCase() === "rock") {
       result = "Tie";
@@ -38,5 +39,34 @@ let playGame = (playerChoice) => {
       result = "Tie";
     }
   }
+  */
+
+  // Better Logic
+
+  if (playerChoice === computerChoice) {
+    alert("Tie");
+  } else if (
+    (playerChoice.toLowerCase() == "rock" && computerChoice == "scissors") ||
+    (playerChoice.toLowerCase() == "paper" && computerChoice == "rock") ||
+    (playerChoice.toLowerCase() == "scissors" && computerChoice == "paper")
+  ) {
+    alert(
+      "You Win! " +
+        playerChoice.toLowerCase() +
+        " beats " +
+        computerChoice.toLowerCase()
+    );
+  } else {
+    alert(
+      "You Lose! " +
+        computerChoice.toLowerCase() +
+        " beats " +
+        playerChoice.toLowerCase()
+    );
+  }
   return result;
 };
+
+let computerChoice = getComputerChoice();
+let playerChoice = prompt("Rock, Paper or Scissors ?", "");
+playRound(playerChoice, computerChoice);
