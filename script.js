@@ -99,5 +99,4 @@ for (let i = 1; i <= 5; i++) {
     console.log("Game canceled by the user");
     break;
   }
-  playRound(playerChoice, computerChoice);
 }
