@@ -90,7 +90,14 @@ for (let i = 1; i <= 5; i++) {
 
   let computerChoice = getComputerChoice();
   let playerChoice = prompt("Rock, Paper or Scissors ?", "");
+
+  if (playerChoice !== null) {
+    playRound(playerChoice, computerChoice);
+    score = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie} Wrong Input: ${scoreInvalid}`;
+    console.log(score);
+  } else {
+    console.log("Game canceled by the user");
+    break;
+  }
   playRound(playerChoice, computerChoice);
-  score = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie} Wrong Input: ${scoreInvalid}`;
-  console.log(score);
 }
