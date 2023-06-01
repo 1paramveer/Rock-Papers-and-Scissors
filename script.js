@@ -1,3 +1,10 @@
+let score;
+let scoreWin = 0;
+let scoreLose = 0;
+let scoreTie = 0;
+let result;
+let scoreInvalid = 0;
+
 for (let i = 1; i <= 5; i++) {
   let getComputerChoice = () => {
     let compChoice = Math.random();
@@ -12,7 +19,6 @@ for (let i = 1; i <= 5; i++) {
   };
 
   let playRound = (playerChoice, computerChoice) => {
-    let result;
     // Previous Logic
     /*
     if (computerChoice === "rock") {
@@ -59,7 +65,11 @@ for (let i = 1; i <= 5; i++) {
           computerChoice.toLowerCase()
       );
       scoreWin++;
-    } else {
+    } else if (
+      (playerChoice.toLowerCase() == "scissors" && computerChoice == "rock") ||
+      (playerChoice.toLowerCase() == "rock" && computerChoice == "paper") ||
+      (playerChoice.toLowerCase() == "paper" && computerChoice == "scissors")
+    ) {
       alert(
         "You Lose! " +
           computerChoice.toLowerCase() +
@@ -67,17 +77,20 @@ for (let i = 1; i <= 5; i++) {
           playerChoice.toLowerCase()
       );
       scoreLose++;
+    } else if (
+      playerChoice != "rock" ||
+      playerChoice != "paper" ||
+      playerChoice != "scissors"
+    ) {
+      alert("Enter Valid Answer");
+      scoreInvalid++;
     }
     return result;
   };
 
   let computerChoice = getComputerChoice();
   let playerChoice = prompt("Rock, Paper or Scissors ?", "");
-  let score;
-  let scoreWin = 0;
-  let scoreLose = 0;
-  let scoreTie = 0;
   playRound(playerChoice, computerChoice);
-  score = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
+  score = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie} Wrong Input: ${scoreInvalid}`;
   console.log(score);
 }
