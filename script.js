@@ -1,102 +1,116 @@
-let score;
+// Declarations
 let scoreWin = 0;
 let scoreLose = 0;
 let scoreTie = 0;
-let result;
-let scoreInvalid = 0;
+let countPlayer = 0;
+let countComputer = 0;
+const rockbtn = document.querySelector(".rock-js");
+const paperbtn = document.querySelector(".paper-js");
+const scissorsbtn = document.querySelector(".scissors-js");
+const resultContainer = document.querySelector(".resultContainer-js");
+const resultText = document.querySelector(".resultText-js");
 
-for (let i = 1; i <= 5; i++) {
-  let getComputerChoice = () => {
-    let compChoice = Math.random();
-    if (compChoice > 0 && compChoice <= 1 / 3) {
-      compChoice = "rock";
-    } else if (compChoice > 1 / 3 && compChoice <= 2 / 3) {
-      compChoice = "paper";
-    } else if (compChoice > 2 / 3 && compChoice <= 1) {
-      compChoice = "scissors";
+// Check Game end
+
+let checkGameEnd = () => {
+  if (countPlayer === 5 || countComputer === 5) {
+    if (countPlayer === 5) {
+      alert("Congrats!, You won the game.");
+    } else {
+      alert("Sorry!, Computer won the game.");
     }
-    return compChoice;
-  };
-
-  let playRound = (playerChoice, computerChoice) => {
-    // Previous Logic
-    /*
-    if (computerChoice === "rock") {
-      if (playerChoice.toLowerCase() === "rock") {
-        result = "Tie";
-      } else if (playerChoice.toLowerCase() === "paper") {
-        result = "You Win";
-      } else if (playerChoice.toLowerCase() === "scissors") {
-        result = "You Lose";
-      }
-    } else if (computerChoice === "paper") {
-      if (playerChoice.toLowerCase() === "rock") {
-        result = "You Lose";
-      } else if (playerChoice.toLowerCase() === "paper") {
-        result = "Tie";
-      } else if (playerChoice.toLowerCase() === "scissors") {
-        result = "You Win";
-      }
-    } else if (computerChoice === "scissors") {
-      if (playerChoice.toLowerCase() === "rock") {
-        result = "You Win";
-      } else if (playerChoice.toLowerCase() === "paper") {
-        result = "You Lose";
-      } else if (playerChoice.toLowerCase() === "scissors") {
-        result = "Tie";
-      }
+    scoreWin = 0;
+    scoreLose = 0;
+    scoreTie = 0;
+    countPlayer = 0;
+    countComputer = 0;
+    resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
+    const restart = confirm("Do you want to try again?");
+    if (restart) {
+      return true;
+    } else {
+      rockbtn.disabled = true;
+      paperbtn.disabled = true;
+      scissorsbtn.disabled = true;
+      return false;
     }
-    */
-
-    // Better Logic
-
-    if (playerChoice === computerChoice) {
-      alert("Tie");
-      scoreTie++;
-    } else if (
-      (playerChoice.toLowerCase() == "rock" && computerChoice == "scissors") ||
-      (playerChoice.toLowerCase() == "paper" && computerChoice == "rock") ||
-      (playerChoice.toLowerCase() == "scissors" && computerChoice == "paper")
-    ) {
-      alert(
-        "You Win! " +
-          playerChoice.toLowerCase() +
-          " beats " +
-          computerChoice.toLowerCase()
-      );
-      scoreWin++;
-    } else if (
-      (playerChoice.toLowerCase() == "scissors" && computerChoice == "rock") ||
-      (playerChoice.toLowerCase() == "rock" && computerChoice == "paper") ||
-      (playerChoice.toLowerCase() == "paper" && computerChoice == "scissors")
-    ) {
-      alert(
-        "You Lose! " +
-          computerChoice.toLowerCase() +
-          " beats " +
-          playerChoice.toLowerCase()
-      );
-      scoreLose++;
-    } else if (
-      playerChoice != "rock" ||
-      playerChoice != "paper" ||
-      playerChoice != "scissors"
-    ) {
-      alert("Enter Valid Answer");
-      scoreInvalid++;
-    }
-    return result;
-  };
-
-  let computerChoice = getComputerChoice();
-  let playerChoice = prompt("Rock, Paper or Scissors ?", "");
-
-  if (playerChoice !== null) {
-    playRound(playerChoice, computerChoice);
-    score = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie} Wrong Input: ${scoreInvalid}`;
-    console.log(score);
-  } else {
-    console.log("Game canceled by the user");
-    break;
   }
-}
+  return true;
+};
+
+// Computer Choice
+let getComputerChoice = () => {
+  let compChoice = Math.random();
+  if (compChoice > 0 && compChoice <= 1 / 3) {
+    compChoice = "rock";
+  } else if (compChoice > 1 / 3 && compChoice <= 2 / 3) {
+    compChoice = "paper";
+  } else if (compChoice > 2 / 3 && compChoice <= 1) {
+    compChoice = "scissors";
+  }
+  return compChoice;
+};
+
+// Play Round
+let playRound = (playerChoice, computerChoice) => {
+  if (playerChoice === computerChoice) {
+    alert("Tie");
+    scoreTie++;
+  } else if (
+    (playerChoice == "rock" && computerChoice == "scissors") ||
+    (playerChoice == "paper" && computerChoice == "rock") ||
+    (playerChoice == "scissors" && computerChoice == "paper")
+  ) {
+    alert("You Win! " + playerChoice + " beats " + computerChoice);
+    scoreWin++;
+    countPlayer++;
+  } else if (
+    (playerChoice == "scissors" && computerChoice == "rock") ||
+    (playerChoice == "rock" && computerChoice == "paper") ||
+    (playerChoice == "paper" && computerChoice == "scissors")
+  ) {
+    alert("You Lose! " + computerChoice + " beats " + playerChoice);
+    scoreLose++;
+    countComputer++;
+  }
+  resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`; // updated score
+  const continueGame = checkGameEnd(); // checks game end
+  if (!continueGame) {
+    return;
+  }
+};
+
+// Button
+
+// rock-button
+rockbtn.innerText = "Rock";
+rockbtn.addEventListener("click", () => {
+  playRound("rock", getComputerChoice());
+  resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
+});
+//paper-button
+paperbtn.innerText = "Papers";
+paperbtn.addEventListener("click", () => {
+  playRound("paper", getComputerChoice());
+  resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
+});
+// scissors-button
+scissorsbtn.innerText = "Scissors";
+scissorsbtn.addEventListener("click", () => {
+  playRound("scissors", getComputerChoice());
+  resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
+});
+//restart game
+const restartbtn = document.querySelector(".restart-js");
+restartbtn.innerText = "Restart";
+restartbtn.addEventListener("click", () => {
+  rockbtn.disabled = false;
+  paperbtn.disabled = false;
+  scissorsbtn.disabled = false;
+  scoreWin = 0;
+  scoreLose = 0;
+  scoreTie = 0;
+  countPlayer = 0;
+  countComputer = 0;
+  resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
+});
