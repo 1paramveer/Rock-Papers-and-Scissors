@@ -37,7 +37,7 @@ header {
   p {
     font-family: VT323;
     color: $retro-blue;
-    font-size: 10px;
+    font-size: 50px;
   }
 }
 
@@ -67,7 +67,6 @@ footer {
   height: 50px;
   width: 100%;
   margin-top: auto;
-  border-radius: 10px;
   p {
     color: rgba($retro-blue, 0.8);
   }
@@ -97,5 +96,23 @@ footer {
   }
   &:active {
     opacity: 0.7;
+  }
+}
+
+.resultContainer-css {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 10px;
+  border-color: #1f279285;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 10px;
+
+  p {
+    font-family: VT323;
+    color: $retro-blue;
+    font-size: 50px;
   }
 }
