@@ -11,6 +11,7 @@ const resultContainer = document.querySelector(".resultContainer-js");
 const resultText = document.querySelector(".resultText-js");
 let userMoveShowCase = document.querySelector(".userMoveShowCase-js");
 let computerMoveShowCase = document.querySelector(".computerMoveShowCase-js");
+let movesText = document.querySelector(".movesText-js");
 
 // Blank result Showcase
 userMoveShowCase.innerText = `User Move: -`;
@@ -33,6 +34,10 @@ let checkGameEnd = () => {
     resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
     const restart = confirm("Do you want to try again?");
     if (restart) {
+      // Write a solution here
+      movesText.innerText = "Show em some Moves!";
+      userMoveShowCase.innerText = `User Move: -`;
+      computerMoveShowCase.innerText = `Computer Move: -`;
       return true;
     } else {
       rockbtn.disabled = true;
@@ -41,6 +46,9 @@ let checkGameEnd = () => {
       rockbtn.innerHTML = `<img src="assets/disabled.png" style="height:100px;width:100px;">`;
       paperbtn.innerHTML = `<img src="assets/disabled.png" style="height:100px;width:100px;">`;
       scissorsbtn.innerHTML = `<img src="assets/disabled.png" style="height:100px;width:100px;">`;
+      movesText.innerText = "Show em some Moves!";
+      userMoveShowCase.innerText = `User Move: -`;
+      computerMoveShowCase.innerText = `Computer Move: -`;
       return false;
     }
   }
@@ -63,14 +71,14 @@ let getComputerChoice = () => {
 // Play Round
 let playRound = (playerChoice, computerChoice) => {
   if (playerChoice === computerChoice) {
-    alert("Tie");
+    movesText.innerText = `Thats a Tie! ${playerChoice} is equal to ${computerChoice}`;
     scoreTie++;
   } else if (
     (playerChoice == "rock" && computerChoice == "scissors") ||
     (playerChoice == "paper" && computerChoice == "rock") ||
     (playerChoice == "scissors" && computerChoice == "paper")
   ) {
-    alert("You Win! " + playerChoice + " beats " + computerChoice);
+    movesText.innerText = `You Win! ${playerChoice} beats ${computerChoice}`;
     scoreWin++;
     countPlayer++;
   } else if (
@@ -78,7 +86,7 @@ let playRound = (playerChoice, computerChoice) => {
     (playerChoice == "rock" && computerChoice == "paper") ||
     (playerChoice == "paper" && computerChoice == "scissors")
   ) {
-    alert("You Lose! " + computerChoice + " beats " + playerChoice);
+    movesText.innerText = `You Lose! ${computerChoice} beats ${playerChoice}`;
     scoreLose++;
     countComputer++;
   }
@@ -130,8 +138,7 @@ restartbtn.addEventListener("click", () => {
   scoreTie = 0;
   countPlayer = 0;
   countComputer = 0;
-  userMoveShowCase.innerText = "";
-  computerMoveShowCase.innerText = "";
+  movesText.innerText = "Show em some Moves!";
   userMoveShowCase.innerText = `User Move: -`;
   computerMoveShowCase.innerText = `Computer Move: -`;
   resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
