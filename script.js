@@ -9,6 +9,12 @@ const paperbtn = document.querySelector(".paper-js");
 const scissorsbtn = document.querySelector(".scissors-js");
 const resultContainer = document.querySelector(".resultContainer-js");
 const resultText = document.querySelector(".resultText-js");
+let userMoveShowCase = document.querySelector(".userMoveShowCase-js");
+let computerMoveShowCase = document.querySelector(".computerMoveShowCase-js");
+
+// Blank result Showcase
+userMoveShowCase.innerText = `User Move: -`;
+computerMoveShowCase.innerText = `Computer Move: -`;
 
 // Check Game end
 
@@ -89,18 +95,24 @@ let playRound = (playerChoice, computerChoice) => {
 rockbtn.innerHTML = `<img src="assets/rock.png" style="height:100px;width:100px;">`;
 rockbtn.addEventListener("click", () => {
   playRound("rock", getComputerChoice());
+  userMoveShowCase.innerText = `User Move: rock`;
+  computerMoveShowCase.innerText = `Computer Move: ${getComputerChoice()}`;
   resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
 });
 //paper-button
 paperbtn.innerHTML = `<img src="assets/paper.png" style="height:100px;width:100px;">`;
 paperbtn.addEventListener("click", () => {
   playRound("paper", getComputerChoice());
+  userMoveShowCase.innerText = `User Move: paper`;
+  computerMoveShowCase.innerText = `Computer Move: ${getComputerChoice()}`;
   resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
 });
 // scissors-button
 scissorsbtn.innerHTML = `<img src="assets/scissors.png" style="height:100px;width:100px;">`;
 scissorsbtn.addEventListener("click", () => {
   playRound("scissors", getComputerChoice());
+  userMoveShowCase.innerText = `User Move: scissors`;
+  computerMoveShowCase.innerText = `Computer Move: ${getComputerChoice()}`;
   resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
 });
 //restart game
@@ -118,5 +130,7 @@ restartbtn.addEventListener("click", () => {
   scoreTie = 0;
   countPlayer = 0;
   countComputer = 0;
+  userMoveShowCase.innerText = "";
+  computerMoveShowCase.innerText = "";
   resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
 });

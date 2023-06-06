@@ -113,6 +113,23 @@ footer {
   p {
     font-family: VT323;
     color: $retro-blue;
-    font-size: 50px;
+    font-size: 40px;
+  }
+}
+
+.moveShowCase {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 10px;
+  border: none;
+  background-color: rgba($retro-blue, 0.5);
+
+  p {
+    color: $retro-yellow;
+    font-size: 20px;
+    font-style: italic;
+    margin: 5px;
   }
 }
