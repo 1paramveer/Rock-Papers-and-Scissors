@@ -32,6 +32,9 @@ let checkGameEnd = () => {
       rockbtn.disabled = true;
       paperbtn.disabled = true;
       scissorsbtn.disabled = true;
+      rockbtn.innerHTML = `<img src="assets/disabled.png" style="height:100px;width:100px;">`;
+      paperbtn.innerHTML = `<img src="assets/disabled.png" style="height:100px;width:100px;">`;
+      scissorsbtn.innerHTML = `<img src="assets/disabled.png" style="height:100px;width:100px;">`;
       return false;
     }
   }
@@ -107,6 +110,9 @@ restartbtn.addEventListener("click", () => {
   rockbtn.disabled = false;
   paperbtn.disabled = false;
   scissorsbtn.disabled = false;
+  rockbtn.innerHTML = `<img src="assets/rock.png" style="height:100px;width:100px;">`;
+  paperbtn.innerHTML = `<img src="assets/paper.png" style="height:100px;width:100px;">`;
+  scissorsbtn.innerHTML = `<img src="assets/scissors.png" style="height:100px;width:100px;">`;
   scoreWin = 0;
   scoreLose = 0;
   scoreTie = 0;
