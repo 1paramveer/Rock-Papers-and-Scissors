@@ -14,8 +14,12 @@ let computerMoveShowCase = document.querySelector(".computerMoveShowCase-js");
 let movesText = document.querySelector(".movesText-js");
 
 // Blank result Showcase
-userMoveShowCase.innerText = `User Move: -`;
-computerMoveShowCase.innerText = `Computer Move: -`;
+function blankTextResetShowCase() {
+  movesText.innerHTML = "Show em some Moves!";
+  userMoveShowCase.innerText = `User Move: -`;
+  computerMoveShowCase.innerText = `Computer Move: -`;
+}
+blankTextResetShowCase();
 
 // Check Game end
 
@@ -31,13 +35,12 @@ let checkGameEnd = () => {
     scoreTie = 0;
     countPlayer = 0;
     countComputer = 0;
+    // Write a solution here
+    blankTextResetShowCase(); //not working
+    // Write a solution here
     resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
     const restart = confirm("Do you want to try again?");
     if (restart) {
-      // Write a solution here
-      movesText.innerText = "Show em some Moves!";
-      userMoveShowCase.innerText = `User Move: -`;
-      computerMoveShowCase.innerText = `Computer Move: -`;
       return true;
     } else {
       rockbtn.disabled = true;
@@ -46,9 +49,7 @@ let checkGameEnd = () => {
       rockbtn.innerHTML = `<img src="assets/disabled.png" style="height:100px;width:100px;">`;
       paperbtn.innerHTML = `<img src="assets/disabled.png" style="height:100px;width:100px;">`;
       scissorsbtn.innerHTML = `<img src="assets/disabled.png" style="height:100px;width:100px;">`;
-      movesText.innerText = "Show em some Moves!";
-      userMoveShowCase.innerText = `User Move: -`;
-      computerMoveShowCase.innerText = `Computer Move: -`;
+      blankTextResetShowCase();
       return false;
     }
   }
@@ -138,8 +139,6 @@ restartbtn.addEventListener("click", () => {
   scoreTie = 0;
   countPlayer = 0;
   countComputer = 0;
-  movesText.innerText = "Show em some Moves!";
-  userMoveShowCase.innerText = `User Move: -`;
-  computerMoveShowCase.innerText = `Computer Move: -`;
+  blankTextResetShowCase();
   resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
 });
