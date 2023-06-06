@@ -132,5 +132,7 @@ restartbtn.addEventListener("click", () => {
   countComputer = 0;
   userMoveShowCase.innerText = "";
   computerMoveShowCase.innerText = "";
+  userMoveShowCase.innerText = `User Move: -`;
+  computerMoveShowCase.innerText = `Computer Move: -`;
   resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
 });
