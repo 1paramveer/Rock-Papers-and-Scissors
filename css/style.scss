@@ -6,6 +6,7 @@
 $retro-pink: #f2c4b8;
 $retro-blue: #1b227d;
 $retro-yellow: #f7bb2e;
+$retro-red: #e14842;
 
 // Sass
 
@@ -36,7 +37,7 @@ header {
   p {
     font-family: VT323;
     color: $retro-blue;
-    font-size: 30px;
+    font-size: 50px;
   }
 }
 
@@ -52,6 +53,8 @@ header {
   border-radius: 10px;
   p {
     color: $retro-yellow;
+    font-size: 20px;
+    font-style: italic;
     margin: 5px;
   }
 }
@@ -67,5 +70,32 @@ footer {
   border-radius: 10px;
   p {
     color: rgba($retro-blue, 0.8);
+  }
+}
+
+.userMoveContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.rock-img-css-btn,
+.paper-img-css-btn,
+.scissors-img-css-btn,
+.restart-img-css-btn {
+  border: 5px solid rgba($retro-blue, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+  margin-right: 50px;
+  transition: 0.5s;
+
+  &:hover {
+    opacity: 0.9;
+    background-color: $retro-red;
+    transform: rotate(-90deg);
+  }
+  &:active {
+    opacity: 0.7;
   }
 }

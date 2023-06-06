@@ -83,26 +83,26 @@ let playRound = (playerChoice, computerChoice) => {
 // Button
 
 // rock-button
-rockbtn.innerText = "Rock";
+rockbtn.innerHTML = `<img src="assets/rock.png" style="height:100px;width:100px;">`;
 rockbtn.addEventListener("click", () => {
   playRound("rock", getComputerChoice());
   resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
 });
 //paper-button
-paperbtn.innerText = "Papers";
+paperbtn.innerHTML = `<img src="assets/paper.png" style="height:100px;width:100px;">`;
 paperbtn.addEventListener("click", () => {
   playRound("paper", getComputerChoice());
   resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
 });
 // scissors-button
-scissorsbtn.innerText = "Scissors";
+scissorsbtn.innerHTML = `<img src="assets/scissors.png" style="height:100px;width:100px;">`;
 scissorsbtn.addEventListener("click", () => {
   playRound("scissors", getComputerChoice());
   resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
 });
 //restart game
 const restartbtn = document.querySelector(".restart-js");
-restartbtn.innerText = "Restart";
+restartbtn.innerHTML = `<img src="assets/restart.svg" style="height:100px;width:100px;">`;
 restartbtn.addEventListener("click", () => {
   rockbtn.disabled = false;
   paperbtn.disabled = false;
