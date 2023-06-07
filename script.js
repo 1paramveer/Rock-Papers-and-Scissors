@@ -111,6 +111,7 @@ scissorsbtn.innerHTML = `<img src="assets/scissors.png" style="height:100px;widt
 
     if (restart) {
       blankTextResetShowCase();
+      restart = false;
     } else{
       userMoveShowCase.innerText = `User Move: ${e.target.id}`;
       computerMoveShowCase.innerText = `Computer Move: ${getComputerChoice()}`;
