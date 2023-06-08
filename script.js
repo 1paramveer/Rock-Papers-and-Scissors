@@ -13,8 +13,6 @@ let userMoveShowCase = document.querySelector(".userMoveShowCase-js");
 let computerMoveShowCase = document.querySelector(".computerMoveShowCase-js");
 let movesText = document.querySelector(".movesText-js");
 
-let restart;
-
 // Blank result Showcase
 function blankTextResetShowCase() {
   movesText.innerHTML = "Show em some Moves!";
@@ -37,8 +35,11 @@ let checkGameEnd = () => {
     scoreTie = 0;
     countPlayer = 0;
     countComputer = 0;
+    // Write a solution here
+    blankTextResetShowCase(); //not working
+    // Write a solution here
     resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
-    restart = confirm("Do you want to try again?");
+    const restart = confirm("Do you want to try again?");
     if (restart) {
       return true;
     } else {
@@ -97,29 +98,32 @@ let playRound = (playerChoice, computerChoice) => {
   }
 };
 
+// Button
 
 // rock-button
-rockbtn.innerHTML = `<img src="assets/rock.png" style="height:100px;width:100px;" id="rock">`;
+rockbtn.innerHTML = `<img src="assets/rock.png" style="height:100px;width:100px;">`;
+rockbtn.addEventListener("click", () => {
+  playRound("rock", getComputerChoice());
+  userMoveShowCase.innerText = `User Move: rock`;
+  computerMoveShowCase.innerText = `Computer Move: ${getComputerChoice()}`;
+  resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
+});
 //paper-button
-paperbtn.innerHTML = `<img src="assets/paper.png" style="height:100px;width:100px;" id="paper">`;
+paperbtn.innerHTML = `<img src="assets/paper.png" style="height:100px;width:100px;">`;
+paperbtn.addEventListener("click", () => {
+  playRound("paper", getComputerChoice());
+  userMoveShowCase.innerText = `User Move: paper`;
+  computerMoveShowCase.innerText = `Computer Move: ${getComputerChoice()}`;
+  resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
+});
 // scissors-button
-scissorsbtn.innerHTML = `<img src="assets/scissors.png" style="height:100px;width:100px;" id="scissors">`;
-
-[rockbtn, paperbtn, scissorsbtn].forEach((button) => {
-  button.addEventListener("click", (e) => {
-    playRound(e.target.id, getComputerChoice());
-
-    if (restart) {
-      blankTextResetShowCase();
-      restart = false;
-    } else{
-      userMoveShowCase.innerText = `User Move: ${e.target.id}`;
-      computerMoveShowCase.innerText = `Computer Move: ${getComputerChoice()}`;
-    }
-    resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
-  })
-})
-
+scissorsbtn.innerHTML = `<img src="assets/scissors.png" style="height:100px;width:100px;">`;
+scissorsbtn.addEventListener("click", () => {
+  playRound("scissors", getComputerChoice());
+  userMoveShowCase.innerText = `User Move: scissors`;
+  computerMoveShowCase.innerText = `Computer Move: ${getComputerChoice()}`;
+  resultText.innerText = `Win: ${scoreWin} Lose: ${scoreLose} Tie: ${scoreTie}`;
+});
 //restart game
 const restartbtn = document.querySelector(".restart-js");
 restartbtn.innerHTML = `<img src="assets/restart.svg" style="height:100px;width:100px;">`;
